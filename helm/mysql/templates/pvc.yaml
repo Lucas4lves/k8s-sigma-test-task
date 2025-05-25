@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ .Values.fullnameOverride }}-pv-claim"
+  namespace: sigma-ns
+  labels:
+    app: wordpress
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+
+# mysql-pv-claim
