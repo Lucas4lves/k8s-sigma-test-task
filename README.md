@@ -41,3 +41,11 @@ docker/
     ├── Dockerfile
     └── wp-config.php
 ```
+* rbac: cluster roles for kinds of users
+```
+rbac/
+├── developer-crb.yml
+├── developer-cr.yml
+├── infra-admin-crb.yml
+└── infra-admin-cr.yml
+```
