@@ -1,5 +1,9 @@
 # Devops Engineer @Sigma Software - Test Task on Kubernetes
 
+## Cluster Infrastructure Resource Group overview
+
+<img src="readme-assets\MC_sigma-test-aks-rg_antwerp_westus2.png" alt="Project Logo" width="650" height="600">
+
 ## Directory's Contents
 * defs: resource definitions for MySQL database, Wordpress and Nginx deployments:
 ```
