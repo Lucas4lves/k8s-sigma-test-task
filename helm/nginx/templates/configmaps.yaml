@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "nginx.fullname" . }}-cm"
+data:
+  nginx.conf: |
+    events {
+        worker_connections 1024;
+    }
+    http {
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+        sendfile on;
+        keepalive_timeout 65;
+
+        # Example: Routing traffic to a Kubernetes service
+        upstream my-app-service {
+            server wordpress.sigma-ns.svc.cluster.local; 
+        }
+
+        server {
+            listen 80;
+            server_name antwerp-dns-8dofk87t.hcp.westus2.azmk8s.io;
+
+            location / {
+                proxy_pass http://wordpress.sigma-ns.svc.cluster.local:80;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+            }
+        }
+    }
